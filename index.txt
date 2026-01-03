@@ -1,54 +1,59 @@
 import React, { useState } from 'react';
-import { BookOpen, Code, FlaskConical, GraduationCap, LayoutGrid, Search, ExternalLink, ArrowRight, User, Mail, School } from 'lucide-react';
+import { BookOpen, Code, FlaskConical, GraduationCap, LayoutGrid, ExternalLink, ArrowRight, User, Mail, School, Sparkles } from 'lucide-react';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('all');
 
-  // GitHub Pages ID 설정 (여기에 연구사님의 GitHub ID를 넣으면 주소가 완성됩니다)
-  const githubID = "jeongdo"; // 예시 ID
+  // ----------------------------------------------------------------------------------
+  // [설정 구역] GitHub ID 입력
+  // ----------------------------------------------------------------------------------
+  // 연구사님의 GitHub 아이디를 아래 따옴표 안에 넣어주세요.
+  // 예: const githubID = "jeongdo";
+  // 이렇게 하면 모든 프로젝트 링크가 자동으로 'https://jeongdo.github.io/프로젝트명' 형태로 연결됩니다.
+  const githubID = "jeongdo"; 
+  // ----------------------------------------------------------------------------------
 
-  // 프로젝트 데이터: 각 프로젝트마다 'link' 속성을 추가하여 실제 주소를 연결합니다.
+  // 프로젝트 데이터 관리
   const projects = [
     {
       id: 1,
       title: 'AI 챗봇 선생님',
+      repoName: 'ai-teacher', // GitHub 리포지토리 이름
       category: 'ai',
-      description: '학생들의 질문에 실시간으로 답변해주는 AI 보조 교사입니다.',
+      description: '학생들의 질문에 실시간으로 답변해주는 AI 보조 교사입니다. 자연어 처리를 통해 맞춤형 학습을 지원합니다.',
       status: '개발 중',
-      icon: <Code className="w-6 h-6 text-blue-500" />,
-      color: 'bg-blue-50',
-      // 실제 배포된 저장소 이름 (예: https://jeongdo.github.io/ai-teacher)
-      link: `https://${githubID}.github.io/ai-teacher` 
+      icon: <Code className="w-6 h-6 text-blue-600" />,
+      color: 'bg-blue-100',
     },
     {
       id: 2,
       title: '과학 실험 시뮬레이터',
+      repoName: 'science-lab',
       category: 'science',
-      description: '위험한 화학 실험을 웹상에서 안전하게 체험할 수 있는 가상 실험실입니다.',
+      description: '위험한 화학 실험을 웹상에서 안전하게 체험할 수 있는 가상 실험실입니다. 3D 시뮬레이션을 제공합니다.',
       status: '계획 중',
-      icon: <FlaskConical className="w-6 h-6 text-green-500" />,
-      color: 'bg-green-50',
-      link: `https://${githubID}.github.io/science-lab`
+      icon: <FlaskConical className="w-6 h-6 text-green-600" />,
+      color: 'bg-green-100',
     },
     {
       id: 3,
       title: '창의융합 독서 기록장',
+      repoName: 'reading-log',
       category: 'education',
-      description: '학생들이 읽은 책을 기록하고 친구들과 공유하는 디지털 독서록입니다.',
+      description: '학생들이 읽은 책을 기록하고 친구들과 공유하는 디지털 독서록입니다. 독서 포트폴리오를 자동으로 생성합니다.',
       status: '완료',
-      icon: <BookOpen className="w-6 h-6 text-purple-500" />,
-      color: 'bg-purple-50',
-      link: `https://${githubID}.github.io/reading-log`
+      icon: <BookOpen className="w-6 h-6 text-purple-600" />,
+      color: 'bg-purple-100',
     },
     {
       id: 4,
       title: '전남 교육 통계 대시보드',
+      repoName: 'jne-stats',
       category: 'data',
-      description: '교육 관련 데이터를 시각화하여 한눈에 파악할 수 있는 도구입니다.',
+      description: '교육 관련 데이터를 시각화하여 한눈에 파악할 수 있는 도구입니다. 학교별 현황을 지도로 보여줍니다.',
       status: '계획 중',
-      icon: <LayoutGrid className="w-6 h-6 text-orange-500" />,
-      color: 'bg-orange-50',
-      link: `https://${githubID}.github.io/jne-stats`
+      icon: <LayoutGrid className="w-6 h-6 text-orange-600" />,
+      color: 'bg-orange-100',
     }
   ];
 
@@ -58,30 +63,35 @@ const App = () => {
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-100">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm backdrop-blur-md bg-white/90">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => window.location.reload()}>
+            <div className="bg-blue-600 p-2 rounded-lg shadow-md">
               <School className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-slate-900 leading-tight">전라남도교육청</h1>
-              <p className="text-xs text-slate-500 font-medium">창의융합교육원</p>
+              <h1 className="text-lg font-bold text-slate-900 leading-tight tracking-tight">전라남도교육청</h1>
+              <p className="text-xs text-blue-600 font-bold tracking-wide">창의융합교육원</p>
             </div>
           </div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition">소개</a>
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition">연구자료</a>
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition">공지사항</a>
+          
+          <nav className="hidden md:flex items-center space-x-8">
+            {['소개', '연구자료', '공지사항'].map((item) => (
+              <a key={item} href="#" className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors relative group">
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+              </a>
+            ))}
           </nav>
-          <div className="flex items-center space-x-2">
+
+          <div className="flex items-center space-x-3 pl-6 border-l border-slate-200">
             <div className="text-right hidden sm:block">
               <p className="text-sm font-bold text-slate-900">이정도</p>
               <p className="text-xs text-slate-500">교육연구사</p>
             </div>
-            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
+            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 shadow-inner">
               <User className="w-5 h-5 text-slate-400" />
             </div>
           </div>
@@ -89,23 +99,31 @@ const App = () => {
       </header>
 
       {/* Hero Section */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold tracking-wide uppercase mb-4">
-            Creative Convergence Education
+      <div className="bg-white border-b border-slate-200 relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-10 right-10 w-64 h-64 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+          <div className="absolute top-10 left-10 w-64 h-64 bg-purple-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-32 left-1/2 w-64 h-64 bg-green-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center relative z-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold tracking-wide uppercase mb-6 border border-blue-100 shadow-sm">
+            <Sparkles className="w-3 h-3 mr-1" />
+            Creative Convergence Education Hub
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-            미래를 여는 <span className="text-blue-600">창의융합 교육</span>의 중심
+          <h2 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+            미래를 여는 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">창의융합 교육</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-            선생님과 학생들을 위한 다양한 디지털 교육 도구와 연구 자료를 개발하고 공유합니다.
-            전남 교육의 디지털 대전환을 위한 실험실입니다.
+          <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+            선생님과 학생들을 위한 다양한 디지털 교육 도구와 연구 자료를 개발하고 공유합니다.<br className="hidden sm:block" />
+            전남 교육의 디지털 대전환을 위한 <strong>이정도 연구사</strong>의 실험실입니다.
           </p>
-          <div className="flex justify-center gap-4">
-             <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-200">
-               최신 프로젝트 보기
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+             <button className="px-8 py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 hover:shadow-blue-300 transform hover:-translate-y-0.5">
+               프로젝트 둘러보기
              </button>
-             <button className="px-6 py-3 bg-white text-slate-700 font-medium rounded-lg border border-slate-300 hover:bg-slate-50 transition">
+             <button className="px-8 py-3.5 bg-white text-slate-700 font-semibold rounded-xl border border-slate-300 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md">
                연구사 소개
              </button>
           </div>
@@ -113,71 +131,78 @@ const App = () => {
       </div>
 
       {/* Content Section */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Filter Tabs */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-          <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-            <LayoutGrid className="w-5 h-5 text-slate-500" />
-            연구 및 개발 프로젝트
-          </h3>
-          <div className="flex space-x-1 bg-white p-1 rounded-lg border border-slate-200 shadow-sm">
-            {['all', 'ai', 'science', 'education'].map((tab) => (
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Filter Tabs & Title */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+              <LayoutGrid className="w-6 h-6 text-blue-500" />
+              연구 및 개발 프로젝트
+            </h3>
+            <p className="text-slate-500 mt-2 text-sm">현재 진행 중이거나 완료된 디지털 교육 프로젝트 목록입니다.</p>
+          </div>
+          
+          <div className="flex space-x-1 bg-white p-1.5 rounded-xl border border-slate-200 shadow-sm">
+            {[
+              { id: 'all', label: '전체 보기' },
+              { id: 'ai', label: 'AI/SW' },
+              { id: 'science', label: '과학/수학' },
+              { id: 'education', label: '교육일반' }
+            ].map((tab) => (
               <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                  activeTab === tab
-                    ? 'bg-slate-800 text-white shadow-sm'
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-slate-800 text-white shadow-md'
                     : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
-                {tab === 'all' && '전체'}
-                {tab === 'ai' && 'AI/SW'}
-                {tab === 'science' && '과학/수학'}
-                {tab === 'education' && '교육일반'}
+                {tab.label}
               </button>
             ))}
           </div>
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col h-full"
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-300 transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1"
             >
-              <div className="p-6 flex-1">
-                <div className="flex justify-between items-start mb-4">
-                  <div className={`p-3 rounded-xl ${project.color}`}>
+              <div className="p-7 flex-1">
+                <div className="flex justify-between items-start mb-5">
+                  <div className={`p-3.5 rounded-2xl ${project.color} shadow-inner`}>
                     {project.icon}
                   </div>
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-md ${
-                    project.status === '완료' ? 'bg-green-100 text-green-700' :
-                    project.status === '개발 중' ? 'bg-blue-100 text-blue-700' :
-                    'bg-slate-100 text-slate-600'
+                  <span className={`px-2.5 py-1 text-xs font-bold rounded-full border ${
+                    project.status === '완료' ? 'bg-green-50 text-green-700 border-green-100' :
+                    project.status === '개발 중' ? 'bg-blue-50 text-blue-700 border-blue-100' :
+                    'bg-slate-50 text-slate-600 border-slate-200'
                   }`}>
                     {project.status}
                   </span>
                 </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {project.title}
                 </h4>
-                <p className="text-slate-500 text-sm leading-relaxed mb-4">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
               </div>
               
-              <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
-                <span className="text-xs text-slate-400 font-medium">Updated 3 days ago</span>
-                {/* [수정됨] button 태그를 a 태그로 변경하여 실제 링크로 이동하도록 수정했습니다.
-                  target="_blank"는 새 탭에서 열리게 합니다.
+              <div className="px-7 py-5 bg-slate-50/50 border-t border-slate-100 flex justify-between items-center group-hover:bg-blue-50/30 transition-colors">
+                <span className="text-xs text-slate-400 font-medium">Ver 1.0</span>
+                {/* GitHub Pages 링크 생성 로직
+                  메인: https://ID.github.io
+                  앱: https://ID.github.io/repoName
                 */}
                 <a 
-                  href={project.link}
+                  href={`https://${githubID}.github.io/${project.repoName}`}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer"
+                  className="text-sm font-bold text-blue-600 flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
                 >
                   실행하기 <ArrowRight className="w-4 h-4" />
                 </a>
@@ -185,49 +210,56 @@ const App = () => {
             </div>
           ))}
 
-          {/* New Project Placeholder (Admin View) */}
-          <div className="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:border-blue-400 hover:bg-blue-50 transition cursor-pointer group min-h-[250px]">
-            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-white group-hover:shadow-sm">
-              <span className="text-2xl text-slate-400 group-hover:text-blue-500">+</span>
+          {/* New Project Placeholder (Admin Only) */}
+          <a 
+            href="https://github.com/new" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-2 border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:border-blue-400 hover:bg-blue-50/50 transition-all cursor-pointer group min-h-[280px]"
+          >
+            <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mb-5 group-hover:bg-white group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
+              <span className="text-3xl text-slate-400 group-hover:text-blue-500 font-light">+</span>
             </div>
-            <h4 className="text-base font-bold text-slate-600 group-hover:text-blue-600">새 프로젝트 추가</h4>
-            <p className="text-sm text-slate-400 mt-1">새로운 GitHub Repository를 생성하세요</p>
-          </div>
+            <h4 className="text-lg font-bold text-slate-600 group-hover:text-blue-600">새 프로젝트 추가</h4>
+            <p className="text-sm text-slate-400 mt-2">GitHub에서 새로운 Repository를<br/>생성하여 연결하세요</p>
+          </a>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-12 mt-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 text-white font-bold text-lg mb-4">
-                <GraduationCap />
+      <footer className="bg-slate-900 text-slate-400 py-16 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-2 text-white font-bold text-xl mb-6">
+                <GraduationCap className="w-8 h-8 text-blue-400" />
                 <span>Creative Edu Hub</span>
               </div>
-              <p className="text-sm leading-relaxed">
-                전라남도교육청 창의융합교육원<br/>
-                미래 교육을 위한 디지털 플랫폼입니다.
+              <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
+                전라남도교육청 창의융합교육원 소속 이정도 연구사의 디지털 포트폴리오입니다.
+                에듀테크를 활용한 수업 혁신과 미래 교육 모델을 연구합니다.
               </p>
             </div>
             <div>
-              <h5 className="text-white font-bold mb-4">관련 사이트</h5>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">전라남도교육청</a></li>
-                <li><a href="#" className="hover:text-white transition">창의융합교육원</a></li>
-                <li><a href="#" className="hover:text-white transition">에듀넷 티-클리어</a></li>
+              <h5 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Related Sites</h5>
+              <ul className="space-y-3 text-sm">
+                <li><a href="https://www.jne.go.kr" target="_blank" className="hover:text-blue-400 transition flex items-center gap-2"><ExternalLink className="w-3 h-3"/> 전라남도교육청</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition flex items-center gap-2"><ExternalLink className="w-3 h-3"/> 창의융합교육원</a></li>
+                <li><a href="https://www.edunet.net" target="_blank" className="hover:text-blue-400 transition flex items-center gap-2"><ExternalLink className="w-3 h-3"/> 에듀넷 티-클리어</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-bold mb-4">Contact</h5>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> research@jnehub.go.kr</li>
-                <li className="flex items-center gap-2"><User className="w-4 h-4" /> 교육연구사 이정도</li>
+              <h5 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Contact Info</h5>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-400" /> research@jne.go.kr</li>
+                <li className="flex items-center gap-3"><User className="w-4 h-4 text-blue-400" /> 교육연구사 이정도</li>
+                <li className="flex items-center gap-3"><School className="w-4 h-4 text-blue-400" /> 창의융합교육원 연구실</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-800 pt-8 text-xs text-center">
-            &copy; 2024 Jeollanamdo Office of Education. All rights reserved.
+          <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>&copy; 2024 Jeollanamdo Office of Education. All rights reserved.</p>
+            <p>Designed for Future Education</p>
           </div>
         </div>
       </footer>
